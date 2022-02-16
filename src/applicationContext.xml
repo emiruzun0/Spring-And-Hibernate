@@ -9,8 +9,29 @@
 
     <!-- Define your beans here -->
     
+    
+    <!-- Define the dependency -->
+    <bean id="myFortuneService"
+    	class="springdemo.HappyFortuneService">
+    </bean>
+    
     <bean id="myCoach"
-    	class="springdemo.FootballCoach">
+    	class="springdemo.TrackCoach">
+    	
+    	<!-- Set up constructor injection -->
+    	<constructor-arg ref="myFortuneService"/>
+    </bean>
+    
+    <bean id="myCricketCoach"
+    	class="springdemo.CricketCoach" >
+    	
+    	<!-- set up setter injection-->
+    	<property name="fortuneService" ref="myFortuneService" />
+    	
+    	<!-- inject literal values-->
+    	<property name="emailAddress" value= "thebestcoach@emirhanuzun.com"/>
+    	<property name="team" value="Sunrisers Hyderabad"/>
+    
     </bean>
     
      <bean id="myLoggerConfig" class="springdemo.MyLoggerConfig" init-method="initLogger">
